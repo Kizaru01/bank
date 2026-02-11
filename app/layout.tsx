@@ -29,7 +29,6 @@ export default function RootLayout({ children } : Readonly<{
       <body
         className={`${inter.variable} ${IBM.variable} antialiased`}
       >   
-      Aunthentication
         {children}
       </body>
     </html>
