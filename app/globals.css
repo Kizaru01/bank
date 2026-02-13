@@ -196,6 +196,19 @@
   }.bank-card_icon {
     @apply flex size-full flex-1 flex-col items-end justify-between rounded-r-4xl bg-bank-gradient bg-cover bg-center bg-no-repeat py-5 pr-5;
   }
+  .auth-form {
+    @apply flex  w-full max-w-105 flex-col justify-center gap-5 py-10 md:gap-8;
+  }
+  .form-item {
+    @apply flex flex-col gap-1.5;
+  }
+  .form-label {
+    @apply text-[14px] w-full max-w-70 font-medium text-gray-700;
+  }
+  .input-class {
+    @apply text-[16px] placeholder:text-[16px] rounded-lg border border-gray-300 text-gray-900 placeholder:text-gray-500;
+  }
+
 }
 
 
