@@ -9,3 +9,6 @@ export interface TotalBalanceBoxProps {
   totalBanks: number;
   totalCurrentBalance: number;
 }
+export interface DoughnutChartProps {
+  accounts: Account[];
+}

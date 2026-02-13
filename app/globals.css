@@ -5,8 +5,21 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
-
-  --color-p1: #0179FE; 
+   --shadow-profile: 
+    0px 12px 16px -4px rgba(16, 24, 40, 0.08),
+    0px 4px 6px -2px rgba(16, 24, 40, 0.03);
+ --background-image-gradient-mesh: url('/icons/gradient-mesh.svg');
+  --background-image-bank-gradient: linear-gradient(
+    90deg,
+    #0179FE 0%,
+    #4893FF 100%
+  );
+  --font-family-inter: var(--font-inter);
+  --font-family-ibm-plex-serif: var(--font-ibm-plex-serif);
+  --color-p1: #0179FE;  
+  --color-black-1:#00214F;
+  --color-black-2:#344054;
+  --background-p2:#0179FE;
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
@@ -127,9 +140,62 @@
   }
  
 }
-
 @layer utilities {
   .flex-center {
     @apply flex items-center justify-center;
   }
+
+  .sidebar-link {
+    @apply flex items-center gap-3 py-1 md:p-3 2xl:p-4 rounded-lg justify-center xl:justify-start;
+  }
+
+  .sidebar-label {
+    @apply text-[16px] font-semibold text-black-2 max-xl:hidden;
+  }
+
+  .shadow-creditcard {
+    box-shadow: 8px 10px 16px 0px rgba(0, 0, 0, 0.05);
+  }
+  .root-layout {
+    @apply flex h-16 items-center justify-between p-5 sm:p-8 md:hidden ;
+  }
+  .mobilenav-sheet {
+    @apply flex h-[calc(100vh-72px)] flex-col justify-between overflow-y-auto;
+  }
+  .mobilenav-sheet_close {
+    @apply flex gap-3 items-center p-4 rounded-lg w-full max-w-60;
+  }
+  .right-sidebar {
+    @apply no-scrollbar hidden h-screen max-h-screen flex-col border-l border-gray-200 xl:flex w-88.75 xl:overflow-y-scroll;
+  }
+  .profile-banner {
+    @apply h-[120px] w-full bg-gradient-mesh bg-cover bg-no-repeat;
+  } 
+  .profile {
+    @apply relative flex px-6 max-xl:justify-center;
+  }
+  .profile-img {
+    @apply flex items-center justify-center  absolute -top-8 size-24 rounded-full bg-gray-100 border-8 border-white p-2 shadow-profile;
+  } 
+  .shadow-profile {
+    box-shadow: var(--shadow-profile);
+  }.profile-details {
+    @apply flex flex-col pt-24;
+  }
+    .banks {
+    @apply flex flex-col justify-between gap-8 px-6 py-8;
+  }
+    .header-2 {
+    @apply text-[18px] font-semibold text-gray-900;
+  }
+   .bank-card {
+    @apply relative flex h-47.5 w-full max-w-[320px] justify-between rounded-4xl border border-white bg-bank-gradient backdrop-blur-[6px];
+  }
+   .bank-card_content {
+    @apply relative z-10 flex size-full max-w-57 flex-col justify-between rounded-l-4xl bg-gray-700 bg-bank-gradient px-5 pb-4 pt-5;
+  }.bank-card_icon {
+    @apply flex size-full flex-1 flex-col items-end justify-between rounded-r-4xl bg-bank-gradient bg-cover bg-center bg-no-repeat py-5 pr-5;
+  }
 }
+
+
