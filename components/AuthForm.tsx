@@ -6,28 +6,22 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { authFormSchema } from "@/lib/utils"
 import { z } from "zod"
-import {
-  Form,
-  FormControl,
-  FormDescription,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form"
-import { Input } from "@/components/ui/input"
+import { Form } from "@/components/ui/form"
 import { Button } from "./ui/button"
-import { Divide, Loader2 } from "lucide-react"
-import CustomInput from "./CustomInput"
+import { Loader2 } from "lucide-react"
+import CustomInput from "./CustomInputAuth"
+import { signIn, signUp } from "@/lib/actions/user.actions"
+import { useRouter } from "next/navigation"
+
 const AuthForm = ({ type }: {type: string}) => {
   const [user, setUser] = useState(null)
   const [isLoading, setIsLoading] = useState(false)
-
+  const router = useRouter();
   const schema = authFormSchema(type)
   const form = useForm<z.infer<typeof schema>>({
     resolver: zodResolver(schema),
     defaultValues: {
-      email: "",
+      email: '',
       password: '',
       firstName: '',
       lastName: '',
@@ -35,14 +29,34 @@ const AuthForm = ({ type }: {type: string}) => {
       state: '',
       postalCode: '',
       dateOfBirth: '',
-      ssn: "",
+      ssn: '',
       city: '',
     },
   })
-  function onSubmit(values: z.infer<typeof authFormSchema>){
+  const onSubmit = async (data: z.infer<typeof schema>) => {
     setIsLoading(true);
-    console.log(values);
-    setIsLoading(false);
+    
+    try {
+      
+      if(type === 'sign-up') {
+        const newUser = await signUp(data);
+        
+        setUser(newUser);
+      }
+      if( type === 'sign-in'){
+        const response = await signIn({
+          email: data.email,
+          password: data.password,
+        })
+        if(response) router.push('/')
+      }
+
+
+    } catch (error) {
+      alert(error)
+    } finally {
+      setIsLoading(false)
+    }
   }
 
   return (
@@ -154,7 +168,7 @@ const AuthForm = ({ type }: {type: string}) => {
                       className="animate-spin" />
                       &nbsp;Loading..
                     </>
-                  ) : type === 'sign-in' ? 'Sign-in' : 'Sign-up'}
+                  ) : type === 'sign-in' ? 'Sign in' : 'Sign up'}
                   </Button>
               </form>
             </Form>

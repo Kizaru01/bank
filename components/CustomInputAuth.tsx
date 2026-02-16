@@ -1,10 +1,7 @@
-import React from 'react'
-import { FormField, FormLabel, FormControl, FormMessage } from './ui/form'
-import { Input } from './ui/input'
+
 import { CustomInputProps } from '@/Types/auth'
-import { authFormSchema } from '@/lib/utils'
-
-
+import { FormField, FormLabel, FormControl, FormMessage,FormItem} from './ui/form'
+import { Input } from './ui/input'
 
 const CustomInput = ({ control, placeholder, name, label} : CustomInputProps) => {
   return (
@@ -13,7 +10,7 @@ const CustomInput = ({ control, placeholder, name, label} : CustomInputProps) =>
         control={control}
         name={name}
         render={({ field }) => (
-          <div className="form-item">
+          <FormItem className="form-item">
             <FormLabel className="form-label">
               {label}
             </FormLabel>
@@ -29,7 +26,7 @@ const CustomInput = ({ control, placeholder, name, label} : CustomInputProps) =>
               <FormMessage className="text-[12px]  text-red-500 "/>
               
             </div>
-          </div>
+          </FormItem>
         )}
       />
   )
