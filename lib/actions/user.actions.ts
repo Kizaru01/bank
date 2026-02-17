@@ -33,10 +33,10 @@ export const signUp = async (userData: SignUpParams) => {
         password,
         name: `${firstName} ${lastName}`,
     });
-        const session = await account.createEmailPasswordSession({
+        const session = await account.createEmailPasswordSession(
         email,
         password
-    });
+    );
 
   const cookieStore = await cookies();
     cookieStore.set("appwrite-session", session.secret, {
@@ -55,9 +55,28 @@ export const signUp = async (userData: SignUpParams) => {
 export async function getLoggedInUser(){
     try {
         const { account } = await createSessionClient()
-        return await account.get()
+
+
+        const user = await account.get()
+        
+        return parseStringify(user);
         
     } catch (error) {
+
         return null;
     }
 }
+export const logoutAccount = async () => {
+    try {
+        const { account } = await createSessionClient();
+        ;
+        const deleteCookies = await cookies();
+        deleteCookies.delete('appwrite-session')
+
+        await account.deleteSession('current')
+    } catch (error) {
+
+        return null;
+    }
+}
+

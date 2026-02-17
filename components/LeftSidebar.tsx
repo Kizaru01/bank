@@ -5,7 +5,9 @@ import { SiderbarProps } from "@/Types/Sidebar"
 import Image from "next/image"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-const Sidebar = ({user} : SiderbarProps) => {
+import Footer from "./Footer"
+const Sidebar = ({ user } : SiderbarProps) => {
+
     const pathname = usePathname();
   return (
     <section className=" sticky left-0 top-0 flex h-screen w-fit flex-col  justify-between border-r border-gray-200 bg-white pt-8 text-white 
@@ -42,10 +44,9 @@ const Sidebar = ({user} : SiderbarProps) => {
                                 {label}
                             </p>
                         </Link>
-                    )})}
-                    <p className="text-red-500">User</p>
+                    )})}    
         </nav>
-       <p className="text-red-500">Footer</p>
+        <Footer user={user}/>
     </section> 
   )
 }

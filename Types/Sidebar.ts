@@ -6,6 +6,7 @@ type User = {
   dwollaCustomerId: string;
   firstName: string;
   lastName: string;
+  name: string;
   address1: string;
   city: string;
   state: string;
@@ -24,4 +25,9 @@ export interface RightSidebarProps {
   user: User;
   transactions: Transaction[];
   banks: Bank[] & Account[];
+  }
+  
+export interface FooterProps {
+  user: User;
+  type?: 'mobile' | 'desktop'
 }

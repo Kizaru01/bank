@@ -4,10 +4,6 @@ import {
   Sheet,
   SheetClose,
   SheetContent,
-  SheetDescription,
-  SheetFooter,
-  SheetHeader,
-  SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet"
 import { sidebarLinks } from '@/constants'
@@ -15,13 +11,16 @@ import { cn } from '@/lib/utils'
 import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-const MobileNavbar = ({user} : MobileNavProps ) => {
+import Footer from './Footer'
+
+
+const MobileNavbar = ({ user }  : MobileNavProps ) => {
 
     
 const pathname = usePathname();
 
   return (
-    <section className='w-full max-w-[264px]'>
+    <section className='w-full max-w-66'>
         <Sheet>
             <SheetTrigger>
                 <Image 
@@ -72,12 +71,8 @@ const pathname = usePathname();
                     )})}
                     </nav>
                 </SheetClose>
-                Footer
+                <Footer user={user} type='mobile'/>
             </div>
-         <SheetHeader>
-                        <SheetTitle>Are you absolutely sure?</SheetTitle>
-                    <SheetDescription>This action cannot be undone.</SheetDescription>
-                </SheetHeader>
             </SheetContent>
         </Sheet>
     </section>
